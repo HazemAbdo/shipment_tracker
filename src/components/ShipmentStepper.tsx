@@ -46,7 +46,9 @@ const ShipmentStepper = () => {
         ? 3
         : shipment.CurrentStatus?.state === SHIPMENT_STATE.PACKAGE_RECEIVED
         ? 2
-        : 1
+        : shipment.CurrentStatus?.state === SHIPMENT_STATE.TICKET_CREATED
+        ? 1
+        : 0
     );
   }, [shipment]);
 
@@ -59,6 +61,8 @@ const ShipmentStepper = () => {
         px={{ base: 2, lg: 4 }}
         border="1px solid"
         borderColor="border"
+        boxShadow="xl"
+        rounded="md"
       >
         {verticalStepper ? (
           <Stepper

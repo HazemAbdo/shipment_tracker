@@ -11,10 +11,11 @@ import ShipmentDetailsTable from "./components/ShipmentDetailsTable";
 import DropOffAddressCard from "./components/DropOffAddressCard";
 import ReportProblemCard from "./components/ReportProblemCard";
 import { useShipment } from "./context/ShipmentContext";
+import ErrorMessage from "./components/ErrorMessage";
 
 const colors = {
   brand: "#E30613",
-  brandDark: "#6b0108",
+  brandDark: "#ca0f1b",
   text: {
     bold: "#111619",
     light: "#667085",
@@ -28,19 +29,29 @@ const fonts = {
 };
 function App() {
   const extendedtheme = extendTheme({ colors, fonts });
-  const { showLoader } = useShipment();
+  const { showLoader, showErrorMessage } = useShipment();
   return (
     <ChakraProvider theme={extendedtheme} resetCSS>
       <Navbar />
       {showLoader ? (
         <Box
           width="100%"
-          height="100vh"
+          height="80dvh"
           display="flex"
           justifyContent="center"
           alignItems="center"
         >
           <CircularProgress isIndeterminate color="brand" />
+        </Box>
+      ) : showErrorMessage ? (
+        <Box
+          width="100%"
+          height="80dvh"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <ErrorMessage />
         </Box>
       ) : (
         <>

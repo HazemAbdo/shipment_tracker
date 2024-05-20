@@ -55,6 +55,8 @@ i18n
             drop_off_header: "Drop Off Address",
             report_problem_btn: "Report a Problem",
             report_problem_header: "Is there a problem with your shipment?",
+            search_placeholder: "Tracking Number",
+            search_label: "Track your shipment",
             stepper: {
               state_created: "The shipment has been created",
               state_received:
@@ -135,6 +137,8 @@ i18n
             drop_off_header: "عنوان التسليم",
             report_problem_btn: "إبلاغ عن مشكلة",
             report_problem_header: "هل توجد مشكلة في شحنتك؟",
+            search_placeholder: "رقم التتبع",
+            search_label: "تتبع شحنتك",
             stepper: {
               state_created: "تم إنشاء الشحنة",
               state_received: "تم إستلام الشحنة من التاجر",

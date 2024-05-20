@@ -36,6 +36,8 @@ const DropOffAddressCard = () => {
         px={{ base: 4, lg: 6 }}
         border="1px solid"
         borderColor="border"
+        boxShadow="xl"
+        rounded="md"
       >
         <Text width={{ base: "20ch", sm: "30ch" }}>
           {formatDropOffAddress(shipment?.DropOffAddress)}

@@ -17,6 +17,7 @@ interface ShipmentContextProps {
   setTrackingNumber: Dispatch<SetStateAction<string>>;
   colorScheme: string;
   showLoader: boolean;
+  showErrorMessage: boolean;
 }
 
 const ShipmentContext = createContext<ShipmentContextProps | undefined>(
@@ -27,25 +28,34 @@ export const ShipmentProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [shipment, setShipment] = useState<Shipment>({} as Shipment);
-  const [trackingNumber, setTrackingNumber] = useState<string>("");
+  const [trackingNumber, setTrackingNumber] = useState<string>("6741696");
   const [colorScheme, setColorScheme] = useState("red");
   const [showLoader, setShowLoader] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   useEffect(() => {
-    (async () => {
-      setShowLoader(true);
-      const shipment = await ShipmentService.fetchShipmentDetails(
-        trackingNumber !== "" ? trackingNumber : "6741696"
-      );
-      setShipment(shipment);
-      setColorScheme(
-        shipment.CurrentStatus?.state === SHIPMENT_STATE.DELIVERED
-          ? "green"
-          : shipment.CurrentStatus?.state === SHIPMENT_STATE.DID_NOT_DELIVERED
-          ? "yellow"
-          : "red"
-      );
-      setShowLoader(false);
-    })();
+    if (trackingNumber) {
+      (async () => {
+        setShowLoader(true);
+        setShowErrorMessage(false);
+        const shipment = await ShipmentService.fetchShipmentDetails(
+          trackingNumber
+        );
+        if (!shipment) {
+          setShowErrorMessage(true);
+        } else {
+          setShipment(shipment);
+          setColorScheme(
+            shipment.CurrentStatus?.state === SHIPMENT_STATE.DELIVERED
+              ? "green"
+              : shipment.CurrentStatus?.state ===
+                SHIPMENT_STATE.DID_NOT_DELIVERED
+              ? "yellow"
+              : "red"
+          );
+        }
+        setShowLoader(false);
+      })();
+    }
   }, [trackingNumber]);
 
   return (
@@ -57,6 +67,7 @@ export const ShipmentProvider: React.FC<{ children: ReactNode }> = ({
         setTrackingNumber,
         colorScheme,
         showLoader,
+        showErrorMessage,
       }}
     >
       {children}

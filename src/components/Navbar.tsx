@@ -15,7 +15,8 @@ import { useTranslation } from "react-i18next";
 import { useLocale } from "../context/LocaleContext";
 import LogoArabic from "../assets/logo-ar.svg";
 import LogoEnglish from "../assets/logo-en.svg";
-const NavLink = ({ children }: { children: ReactNode }) => (
+import ShipmentSearch from "./ShipmentSearch";
+export const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
     px={2}
     py={1}
@@ -30,8 +31,8 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 const Navbar = () => {
+  const { onOpen, onClose, isOpen } = useDisclosure();
   const { locale, dir, toggleLocale } = useLocale();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { t } = useTranslation();
   const Links = [
     t("navbar.main"),
@@ -68,8 +69,14 @@ const Navbar = () => {
         <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
           {Links.map((link, index) =>
             index == 3 ? (
-              // TODO handle show shipmenty number search bar
-              <NavLink key={link}>{link}</NavLink>
+              <ShipmentSearch
+                onOpen={onOpen}
+                onClose={onClose}
+                isOpen={isOpen}
+                dir={dir}
+                link={link}
+                key={link}
+              />
             ) : index == 4 ? (
               <NavLink key={link}>{link}</NavLink>
             ) : null

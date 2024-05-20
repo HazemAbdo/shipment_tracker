@@ -38,6 +38,8 @@ const ShipmentDetailsTable = () => {
         dir={dir}
         border="1px solid"
         borderColor="border"
+        boxShadow="xl"
+        rounded="md"
       >
         <Table variant="simple">
           <Thead>

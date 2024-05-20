@@ -3,11 +3,13 @@ import { Shipment } from "../types/shipment";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export interface ShipmentService {
-  fetchShipmentDetails: (trackingNumber: string) => Promise<Shipment>;
+  fetchShipmentDetails: (trackingNumber: string) => Promise<Shipment | null>;
 }
 
 export const ShipmentService: ShipmentService = {
-  fetchShipmentDetails: async (trackingNumber: string): Promise<Shipment> => {
+  fetchShipmentDetails: async (
+    trackingNumber: string
+  ): Promise<Shipment | null> => {
     const headers = new Headers({
       "Content-Type": "application/json",
       "Accept-Language": "ar", // Set language header if needed
@@ -39,7 +41,7 @@ export const ShipmentService: ShipmentService = {
       return shipment;
     } catch (error) {
       console.error("Fetch error:", error);
-      return {} as Shipment;
+      return null;
     }
   },
 };

@@ -19,6 +19,8 @@ const ReportProblemCard = () => {
       justifyContent="center"
       alignItems="center"
       py={{ base: 4, md: 6 }}
+      boxShadow="xl"
+      rounded="md"
     >
       <Image src={ProblemImage} maxWidth="150px" aspectRatio="1" />
       <VStack gap="1rem">
