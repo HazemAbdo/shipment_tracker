@@ -51,12 +51,23 @@ i18n
             track_shipment: "Track Shipment",
             login: "Sign In",
           },
-          shipment_stepper: {
-            shipment_created: "The shipment has been created",
-            shipment_received:
-              "The shipment has been received from the merchant",
-            shipment_in_transit: "The shipment is out for delivery",
-            shipment_delivered: "sent delivered handed",
+          shipment: {
+            stepper: {
+              state_created: "The shipment has been created",
+              state_received:
+                "The shipment has been received from the merchant",
+              state_in_transit: "The shipment is out for delivery",
+              state_delivered: "sent delivered handed",
+            },
+            details: {
+              card: {
+                shipment_id: "Shipment ID",
+                last_update: "Last Update",
+                merchant_name: "Merchant Name",
+                delivery_time: "Delivery Time",
+              },
+              table: {},
+            },
           },
         },
       },
@@ -70,11 +81,22 @@ i18n
             track_shipment: "تتبع شحنتك",
             login: "تسجيل دخول",
           },
-          shipment_stepper: {
-            shipment_created: "تم إنشاء الشحنة",
-            shipment_received: "تم إستلام الشحنة من التاجر",
-            shipment_in_transit: "الشحنة خرجت للتسليم",
-            shipment_delivered: "تم التسليم",
+          shipment: {
+            stepper: {
+              state_created: "تم إنشاء الشحنة",
+              state_received: "تم إستلام الشحنة من التاجر",
+              state_in_transit: "الشحنة خرجت للتسليم",
+              state_delivered: "تم التسليم",
+            },
+            details: {
+              card: {
+                shipment_id: "رقم الشحنة",
+                last_update: "آخر تحديث",
+                merchant_name: "اسم التاجر",
+                delivery_time: "موعد التسليم خلال",
+              },
+              table: {},
+            },
           },
         },
       },

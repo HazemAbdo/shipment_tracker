@@ -36,7 +36,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 const Navbar = () => {
-  const { locale } = useLocale();
+  const { locale, dir, toggleLocale } = useLocale();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { t } = useTranslation();
   const Links = [
@@ -46,7 +46,6 @@ const Navbar = () => {
     t("navbar.track_shipment"),
     t("navbar.login"),
   ];
-  const { dir } = useLocale();
   return (
     <Box
       py={{ base: 4, md: 6 }}
@@ -66,7 +65,7 @@ const Navbar = () => {
           onClick={isOpen ? onClose : onOpen}
         />
         <Box>
-          <Image src="src/assets/logo-en.svg" width="100%" />
+          <Image src={`src/assets/logo-${locale}.svg`} width="100%" />
         </Box>
         <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
           {Links.map((link, index) =>
@@ -86,8 +85,9 @@ const Navbar = () => {
             color="brand"
             bg="none"
             _hover={{ color: "white", bg: "brand" }}
+            onClick={() => toggleLocale()}
           >
-            {locale.toLocaleUpperCase()}
+            {locale === "en" ? "AR" : "ENG"}
           </Button>
         </HStack>
       </Flex>

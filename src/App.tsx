@@ -2,11 +2,12 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import ShipmentStepper from "./components/ShipmentStepper";
+import { useEffect } from "react";
 const colors = {
   brand: "#E30613",
   text: {
     bold: "#111619",
-    light: "#A1D6FF",
+    light: "#667085",
   },
   border: "#E9E9E9",
 };

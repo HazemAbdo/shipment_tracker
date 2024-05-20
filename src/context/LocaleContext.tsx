@@ -5,7 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-
+import { useTranslation } from "react-i18next";
 interface LocaleContextProps {
   locale: string;
   dir: "ltr" | "rtl";
@@ -19,9 +19,10 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [locale, setLocale] = useState<string>("ar");
   const [dir, setDir] = useState<"ltr" | "rtl">("rtl");
-
+  const { i18n } = useTranslation();
   useEffect(() => {
     setDir(locale === "ar" ? "rtl" : "ltr");
+    i18n.changeLanguage(locale);
   }, [locale]);
 
   const toggleLocale = () => {
