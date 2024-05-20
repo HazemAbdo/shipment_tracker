@@ -16,6 +16,7 @@ interface ShipmentContextProps {
   trackingNumber: string;
   setTrackingNumber: Dispatch<SetStateAction<string>>;
   colorScheme: string;
+  showLoader: boolean;
 }
 
 const ShipmentContext = createContext<ShipmentContextProps | undefined>(
@@ -28,24 +29,24 @@ export const ShipmentProvider: React.FC<{ children: ReactNode }> = ({
   const [shipment, setShipment] = useState<Shipment>({} as Shipment);
   const [trackingNumber, setTrackingNumber] = useState<string>("");
   const [colorScheme, setColorScheme] = useState("red");
+  const [showLoader, setShowLoader] = useState(false);
   useEffect(() => {
     (async () => {
+      setShowLoader(true);
       const shipment = await ShipmentService.fetchShipmentDetails(
         trackingNumber !== "" ? trackingNumber : "6741696"
       );
       setShipment(shipment);
+      setColorScheme(
+        shipment.CurrentStatus?.state === SHIPMENT_STATE.DELIVERED
+          ? "green"
+          : shipment.CurrentStatus?.state === SHIPMENT_STATE.DID_NOT_DELIVERED
+          ? "yellow"
+          : "red"
+      );
+      setShowLoader(false);
     })();
   }, [trackingNumber]);
-
-  useEffect(() => {
-    setColorScheme(
-      shipment.CurrentStatus?.state === SHIPMENT_STATE.DELIVERED
-        ? "green"
-        : shipment.CurrentStatus?.state === SHIPMENT_STATE.DID_NOT_DELIVERED
-        ? "yellow"
-        : "red"
-    );
-  }, [shipment]);
 
   return (
     <ShipmentContext.Provider
@@ -55,6 +56,7 @@ export const ShipmentProvider: React.FC<{ children: ReactNode }> = ({
         trackingNumber,
         setTrackingNumber,
         colorScheme,
+        showLoader,
       }}
     >
       {children}
