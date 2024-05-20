@@ -1,4 +1,3 @@
-import "./App.css";
 import Navbar from "./components/Navbar";
 import {
   ChakraProvider,
@@ -12,21 +11,8 @@ import DropOffAddressCard from "./components/DropOffAddressCard";
 import ReportProblemCard from "./components/ReportProblemCard";
 import { useShipment } from "./context/ShipmentContext";
 import ErrorMessage from "./components/ErrorMessage";
+import { colors, fonts } from "./theme";
 
-const colors = {
-  brand: "#E30613",
-  brandDark: "#ca0f1b",
-  text: {
-    bold: "#111619",
-    light: "#667085",
-  },
-  border: "#E9E9E9",
-};
-
-const fonts = {
-  heading: `'Cairo','Open Sans', sans-serif`,
-  body: `'Cairo','Raleway', sans-serif`,
-};
 function App() {
   const extendedtheme = extendTheme({ colors, fonts });
   const { showLoader, showErrorMessage } = useShipment();

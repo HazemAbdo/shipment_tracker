@@ -6,7 +6,11 @@ Shipment Tracking page
 
 This page shows the current state of the shipment with a searching function that updates the content based on the response of the shipment track API.
 
-### Workflow
+# Live Demo
+
+https://shipment-tracker-2edcb.web.app
+
+# Workflow
 
 - First of all I started brainstorming on this Figma frame and tried to map a simple API response to the UI to have an overview of this task (https://www.figma.com/design/G3dGMJEmgANSMmRoKenBIk/Bosta-Brainstorming?node-id=1-3&t=ycYsRiPQ892JQiSE-4)
 - Then I decided the stack to be used:
@@ -16,6 +20,16 @@ This page shows the current state of the shipment with a searching function that
   4. I decided to make all needed directories and code splitting like having services and utils even if it is a one-page project to show my preferred project structure and for separation of concerns.
   5. I added eslint to fix any listing issues and I have prettier configured on my local machine to show my awareness of linters and formatters.
   6. I used i18n for internationalization as it is the industry standard and I have some experience in dealing with it as I used it in one of my open source contributions (https://github.com/jitsi/jitsi-meet/commit/bb49c92cc40f23d8203173b5b538d5dc789216c9) and I used some helper functions to handle Dates internationalization
+
+# Assumptions
+
+1. As given endpoint didn't return the dropoff address I hardcoded one address
+2. I use the shipment 6741696 as a placeholder shipment to have a look at a fully functional page
+3. I handled shipment with one of states in SHIPMENT_STATE in types file and maybe there are other states that I didn't handle but they are the states I found in the response of the API
+4. Maybe font sizes not 100% accurate but in real projects, I will use the design system of the company to have the exact font sizes from Figmas.
+5. I assumed that the merchant name is the provider name but in most cases its Bosta so maybe there is another endpoint to get the merchant name.
+6. I fully converted the Date to arabic instead having the day in English and the rest in Arabic as I found it more readable and I think it is the best practice in the industry.
+7. I used N/A as a placeholder for any missing or null data in the response of the API
 
 # Covered Features
 
