@@ -35,6 +35,7 @@ const ReportProblemCard = () => {
             color: "white",
           }}
           dir={dir}
+          size={{ base: "md", "2xl": "lg" }}
         >
           {t("shipment.report_problem_btn")}
         </Button>

@@ -42,7 +42,7 @@ const ShipmentDetailsTable = () => {
         rounded="md"
       >
         <Table variant="simple">
-          <Thead>
+          <Thead bg="gray.50" height="75px">
             <Tr>
               <Th>{t("shipment.details.table.headers.first")}</Th>
               <Th>{t("shipment.details.table.headers.second")}</Th>

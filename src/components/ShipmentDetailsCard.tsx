@@ -49,7 +49,7 @@ const ShipmentDetailsCard = () => {
               {pointTitle}
             </Text>
             <Text
-              fontSize={{ base: "sm", md: "md" }}
+              fontSize={{ base: "md", md: "lg" }}
               fontWeight="bold"
               color={index == 0 ? colorScheme : "text.bold"}
             >

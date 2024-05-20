@@ -88,6 +88,7 @@ const ShipmentStepper = () => {
                     style={{
                       textWrap: "wrap",
                       width: "15ch",
+                      fontWeight: "bold",
                     }}
                   >
                     {step.description}
@@ -144,7 +145,9 @@ const ShipmentStepper = () => {
             </Box>
             <HStack justifyContent="space-between" width="100%">
               {steps.map((step, index) => (
-                <Text key={index}>{step.description}</Text>
+                <Text key={index} fontWeight="bold">
+                  {step.description}
+                </Text>
               ))}
             </HStack>
           </>
