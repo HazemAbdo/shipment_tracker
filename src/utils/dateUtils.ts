@@ -1,3 +1,5 @@
+import { DropOffAddress } from "../types/shipment";
+
 export const formatLastUpdateDate = (
   dateString: string,
   locale: string
@@ -51,3 +53,21 @@ export const formatDetailsTableDate = (
   );
   return dateFormatter.format(date);
 };
+
+export const formatDetailsTableTime = (
+  dateString: string,
+  locale: string
+): string => {
+  if (!dateString) return "N/A";
+  const date = new Date(dateString);
+  const dateFormatter = new Intl.DateTimeFormat(
+    locale == "ar" ? "ar-EG" : "en-US",
+    {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }
+  );
+  return dateFormatter.format(date);
+};
+

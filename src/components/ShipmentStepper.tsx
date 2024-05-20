@@ -17,8 +17,14 @@ import {
 import { useTranslation } from "react-i18next";
 import { useLocale } from "../context/LocaleContext";
 import ShipmentDetailsCard from "./ShipmentDetailsCard";
+import { useShipment } from "../context/ShipmentContext";
+import { useEffect, useState } from "react";
+import { SHIPMENT_STATE } from "../types/shipment";
 const ShipmentStepper = () => {
   const { t } = useTranslation();
+  const { shipment, colorScheme } = useShipment();
+  const { dir } = useLocale();
+  const [verticalStepper] = useMediaQuery("(max-width: 48em)");
   const steps = [
     { description: t("shipment.stepper.state_created") },
     { description: t("shipment.stepper.state_received") },
@@ -30,13 +36,22 @@ const ShipmentStepper = () => {
     count: steps.length,
   });
 
-  const activeStepText = steps[activeStep].description;
-  const [verticalStepper] = useMediaQuery("(max-width: 48em)");
   const max = steps.length - 1;
   const progressPercent = (activeStep / max) * 100;
-  const { dir } = useLocale();
+  useEffect(() => {
+    setActiveStep(
+      shipment.CurrentStatus?.state === SHIPMENT_STATE.DELIVERED
+        ? 4
+        : shipment.CurrentStatus?.state === SHIPMENT_STATE.OUT_FOR_DELIVERY
+        ? 3
+        : shipment.CurrentStatus?.state === SHIPMENT_STATE.PACKAGE_RECEIVED
+        ? 2
+        : 1
+    );
+  }, [shipment]);
+
   return (
-    <VStack py={{ base: 4, md: 6 }} px={{ base: 8, lg: 32 }}>
+    <VStack py={{ base: 4, md: 6 }} px={{ base: 8, xl: 32, lg: 24 }}>
       <ShipmentDetailsCard />
       <VStack
         width="100%"
@@ -51,7 +66,7 @@ const ShipmentStepper = () => {
             orientation="vertical"
             height="400px"
             gap="0"
-            colorScheme="red"
+            colorScheme={colorScheme}
             marginRight="-100px"
           >
             {steps.map((step, index) => (
@@ -81,7 +96,7 @@ const ShipmentStepper = () => {
               <Stepper
                 size="md"
                 index={activeStep}
-                colorScheme="red"
+                colorScheme={colorScheme}
                 dir={dir}
                 width="100%"
                 display="flex"
@@ -109,7 +124,7 @@ const ShipmentStepper = () => {
                 width="full"
                 top="15px"
                 zIndex={-2}
-                colorScheme="red"
+                colorScheme={colorScheme}
                 dir={dir}
               />
             </Box>

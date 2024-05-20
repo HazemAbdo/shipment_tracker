@@ -49,8 +49,7 @@ const Navbar = () => {
   return (
     <Box
       py={{ base: 4, md: 6 }}
-      px={{ base: 8, lg: 32 }}
-      width="100dvw"
+      px={{ base: 8, xl: 32, lg: 24 }}
       dir={dir}
       fontWeight="bold"
       borderBottom="1px solid"
@@ -98,6 +97,15 @@ const Navbar = () => {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
+            <Button
+              color="brand"
+              alignSelf="start"
+              bg="none"
+              onClick={() => toggleLocale()}
+              key="change-language"
+            >
+              {locale === "en" ? "AR" : "ENG"}
+            </Button>
           </Stack>
         </Box>
       ) : null}

@@ -1,4 +1,4 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useLocale } from "../context/LocaleContext";
 import { useShipment } from "../context/ShipmentContext";
@@ -6,7 +6,7 @@ import { formatLastUpdateDate } from "../utils/dateUtils";
 const ShipmentDetailsCard = () => {
   const { t } = useTranslation();
   const { dir, locale } = useLocale();
-  const { shipment } = useShipment();
+  const { shipment, colorScheme } = useShipment();
   const pointsTitle = [
     `${t("shipment.details.card.shipment_id")} ${shipment.TrackingNumber}`,
     t("shipment.details.card.last_update"),
@@ -14,7 +14,7 @@ const ShipmentDetailsCard = () => {
     t("shipment.details.card.delivery_time"),
   ];
   const points = [
-    `${shipment?.CurrentStatus?.state}`,
+    `${t(`shipment.details.card.state.${shipment?.CurrentStatus?.state}`)}`,
     `${formatLastUpdateDate(shipment?.CurrentStatus?.timestamp, locale)}`,
     `${shipment?.provider}`,
     `${shipment?.PromisedDate ? shipment.PromisedDate : "N/A"}`,
@@ -48,7 +48,7 @@ const ShipmentDetailsCard = () => {
               key={points[index]}
               fontSize={{ base: "sm", md: "md" }}
               fontWeight="bold"
-              color="text.bold"
+              color={index == 0 ? colorScheme : "text.bold"}
             >
               {points[index]}
             </Text>
