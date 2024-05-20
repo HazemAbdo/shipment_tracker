@@ -7,6 +7,7 @@ export enum SHIPMENT_STATE {
   DELIVERED = "DELIVERED",
   CANCELLED = "CANCELLED",
   DID_NOT_DELIVERED = "DID_NOT_DELIVERED",
+  IN_TRANSIT = "IN_TRANSIT",
 }
 export interface DropOffAddress {
   firstLine: string;

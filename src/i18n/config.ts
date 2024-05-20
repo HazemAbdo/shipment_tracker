@@ -79,6 +79,7 @@ i18n
                   RECEIVED_DELIVERY_LOCATION: "Received Delivery Location",
                   CANCELLED: "Cancelled",
                   DID_NOT_DELIVERED: "Did Not Delivered",
+                  IN_TRANSIT: "In Transit",
                 },
               },
               table: {
@@ -156,10 +157,11 @@ i18n
                   TICKET_CREATED: "تم إنشاء التذكرة",
                   PACKAGE_RECEIVED: "تم استلام الطرد",
                   NOT_YET_SHIPPED: "لم يتم الشحن بعد",
-                  OUT_FOR_DELIVERY: "جاري التوصيل",
+                  OUT_FOR_DELIVERY: "خرجت للتسليم",
                   RECEIVED_DELIVERY_LOCATION: "تم استلام موقع التسليم",
                   CANCELLED: "تم الإلغاء",
                   DID_NOT_DELIVERED: "لم يتم التسليم",
+                  IN_TRANSIT: "في مرحلة التوصيل",
                 },
               },
               table: {
