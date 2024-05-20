@@ -14,11 +14,10 @@ const ShipmentDetailsCard = () => {
     t("shipment.details.card.delivery_time"),
   ];
   const points = [
-    `${
-      shipment?.CurrentStatus?.state
-        ? t(`shipment.details.card.state.${shipment?.CurrentStatus?.state}`)
-        : "N/A"
-    }`,
+    `${t(
+      `shipment.details.card.state.${shipment?.CurrentStatus?.state}`,
+      "N/A"
+    )}`,
     `${formatLastUpdateDate(shipment?.CurrentStatus?.timestamp, locale)}`,
     `${shipment?.provider ? shipment?.provider : "N/A"}`,
     `${formatLastUpdateDate(
@@ -33,7 +32,7 @@ const ShipmentDetailsCard = () => {
       px={{ base: 2, lg: 4 }}
       border="1px solid"
       borderColor="border"
-      boxShadow="xl"
+      boxShadow={{ base: "md", md: "xl" }}
       rounded="md"
     >
       <Box

@@ -87,7 +87,7 @@ const Navbar = () => {
             _hover={{ color: "white", bg: "brand" }}
             onClick={() => toggleLocale()}
           >
-            {locale === "en" ? "AR" : "ENG"}
+            {locale === "en" ? "عربي" : "English"}
           </Button>
         </HStack>
       </Flex>
@@ -105,7 +105,7 @@ const Navbar = () => {
               onClick={() => toggleLocale()}
               key="change-language"
             >
-              {locale === "en" ? "AR" : "ENG"}
+              {locale === "en" ? "عربي" : "English"}
             </Button>
           </Stack>
         </Box>

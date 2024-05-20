@@ -38,7 +38,7 @@ const ShipmentDetailsTable = () => {
         dir={dir}
         border="1px solid"
         borderColor="border"
-        boxShadow="xl"
+        boxShadow={{ base: "md", md: "xl" }}
         rounded="md"
       >
         <Table variant="simple">
@@ -61,7 +61,7 @@ const ShipmentDetailsTable = () => {
                   {formatDetailsTableTime(event?.timestamp, locale) || "N/A"}
                 </Td>
                 <Td>
-                  {t(`shipment.details.card.state.${event?.state}`) || "N/A"}
+                  {t(`shipment.details.card.state.${event?.state}`, "N/A")}
                 </Td>
               </Tr>
             ))}

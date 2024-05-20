@@ -12,9 +12,9 @@ const DropOffAddressCard = () => {
     return !dropOffAddress
       ? "N/A"
       : dropOffAddress.city.name !== dropOffAddress.zone.name
-      ? `${dropOffAddress.firstLine}, ${t(
-          `cities.${dropOffAddress.city.name}`
-        )}, ${t(`cities.${dropOffAddress.zone.name}`)}`
+      ? `${dropOffAddress.firstLine}, ${
+          (t(`cities.${dropOffAddress.city.name}`), "N/A")
+        }, ${t(`cities.${dropOffAddress.zone.name}`, "N/A")}`
       : `${dropOffAddress.firstLine}, ${t(
           `cities.${dropOffAddress.city.name}`
         )}`;
@@ -36,7 +36,7 @@ const DropOffAddressCard = () => {
         px={{ base: 4, lg: 6 }}
         border="1px solid"
         borderColor="border"
-        boxShadow="xl"
+        boxShadow={{ base: "md", md: "xl" }}
         rounded="md"
       >
         <Text width={{ base: "20ch", sm: "30ch" }}>

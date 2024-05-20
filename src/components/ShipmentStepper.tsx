@@ -20,6 +20,7 @@ import ShipmentDetailsCard from "./ShipmentDetailsCard";
 import { useShipment } from "../context/ShipmentContext";
 import { useEffect } from "react";
 import { SHIPMENT_STATE } from "../types/shipment";
+
 const ShipmentStepper = () => {
   const { t } = useTranslation();
   const { shipment, colorScheme } = useShipment();
@@ -61,7 +62,7 @@ const ShipmentStepper = () => {
         px={{ base: 2, lg: 4 }}
         border="1px solid"
         borderColor="border"
-        boxShadow="xl"
+        boxShadow={{ base: "md", md: "xl" }}
         rounded="md"
       >
         {verticalStepper ? (
@@ -76,7 +77,10 @@ const ShipmentStepper = () => {
             {steps.map((step, index) => (
               <Step key={index}>
                 <StepIndicator>
-                  <StepStatus complete={<StepIcon />} />
+                  <StepStatus
+                    complete={<StepIcon />}
+                    active={index == 1 ? "📥" : index == 2 ? "🛻" : ""}
+                  />
                 </StepIndicator>
 
                 <Box flexShrink="0">
@@ -106,17 +110,23 @@ const ShipmentStepper = () => {
                 display="flex"
               >
                 {dir === "ltr"
-                  ? steps.map((step) => (
+                  ? steps.map((step, index) => (
                       <Step key={step.id}>
                         <StepIndicator bg="white">
-                          <StepStatus complete={<StepIcon />} />
+                          <StepStatus
+                            complete={<StepIcon />}
+                            active={index == 1 ? "📥" : index == 2 ? "🛻" : ""}
+                          />
                         </StepIndicator>
                       </Step>
                     ))
-                  : steps.reverse().map((step) => (
+                  : steps.reverse().map((step, index) => (
                       <Step key={step.id}>
                         <StepIndicator bg="white">
-                          <StepStatus complete={<StepIcon />} />
+                          <StepStatus
+                            complete={<StepIcon />}
+                            active={index == 1 ? "📥" : index == 2 ? "🛻" : ""}
+                          />
                         </StepIndicator>
                       </Step>
                     ))}
