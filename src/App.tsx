@@ -4,7 +4,6 @@ import {
   ChakraProvider,
   Box,
   extendTheme,
-  useMediaQuery,
 } from "@chakra-ui/react";
 import ShipmentStepper from "./components/ShipmentStepper";
 import ShipmentDetailsTable from "./components/ShipmentDetailsTable";
@@ -27,7 +26,6 @@ const fonts = {
 };
 function App() {
   const extendedtheme = extendTheme({ colors, fonts });
-  const [convertGridToBlock] = useMediaQuery("(max-width: 900px)");
   return (
     <ChakraProvider theme={extendedtheme} resetCSS>
       <Navbar />

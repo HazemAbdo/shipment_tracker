@@ -1,8 +1,7 @@
 import { Box, Image, VStack, Button, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useLocale } from "../context/LocaleContext";
-import { useShipment } from "../context/ShipmentContext";
-
+import ProblemImage from "../assets/report-problem-vector.jpg";
 const ReportProblemCard = () => {
   const { t } = useTranslation();
   const { dir } = useLocale();
@@ -21,11 +20,7 @@ const ReportProblemCard = () => {
       alignItems="center"
       py={{ base: 4, md: 6 }}
     >
-      <Image
-        src="src/assets/report-problem-vector.jpg"
-        maxWidth="150px"
-        aspectRatio="1"
-      />
+      <Image src={ProblemImage} maxWidth="150px" aspectRatio="1" />
       <VStack gap="1rem">
         <Text color="text.bold" textAlign="center" dir={dir}>
           {t("shipment.report_problem_header")}

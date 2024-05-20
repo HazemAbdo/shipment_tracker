@@ -36,16 +36,11 @@ const ShipmentDetailsCard = () => {
         gap={{ base: 2, md: 4 }}
       >
         {pointsTitle.map((pointTitle, index) => (
-          <VStack>
-            <Text
-              key={pointTitle}
-              fontSize={{ base: "sm", md: "md" }}
-              color="text.light"
-            >
+          <VStack key={pointTitle}>
+            <Text fontSize={{ base: "sm", md: "md" }} color="text.light">
               {pointTitle}
             </Text>
             <Text
-              key={points[index]}
               fontSize={{ base: "sm", md: "md" }}
               fontWeight="bold"
               color={index == 0 ? colorScheme : "text.bold"}

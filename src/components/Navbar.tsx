@@ -2,25 +2,19 @@ import { ReactNode } from "react";
 import {
   Box,
   Flex,
-  Avatar,
-  HStack,
   Link,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
+  HStack,
   Image,
+  useDisclosure,
+  Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import { useLocale } from "../context/LocaleContext";
-
+import LogoArabic from "../assets/logo-ar.svg";
+import LogoEnglish from "../assets/logo-en.svg";
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
     px={2}
@@ -64,7 +58,7 @@ const Navbar = () => {
           onClick={isOpen ? onClose : onOpen}
         />
         <Box>
-          <Image src={`src/assets/logo-${locale}.svg`} width="100%" />
+          <Image src={locale == "ar" ? LogoArabic : LogoEnglish} width="100%" />
         </Box>
         <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
           {Links.map((link, index) =>

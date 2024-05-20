@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 import { useLocale } from "../context/LocaleContext";
 import ShipmentDetailsCard from "./ShipmentDetailsCard";
 import { useShipment } from "../context/ShipmentContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SHIPMENT_STATE } from "../types/shipment";
 const ShipmentStepper = () => {
   const { t } = useTranslation();
@@ -26,10 +26,10 @@ const ShipmentStepper = () => {
   const { dir } = useLocale();
   const [verticalStepper] = useMediaQuery("(max-width: 48em)");
   const steps = [
-    { description: t("shipment.stepper.state_created") },
-    { description: t("shipment.stepper.state_received") },
-    { description: t("shipment.stepper.state_in_transit") },
-    { description: t("shipment.stepper.state_delivered") },
+    { id: "1", description: t("shipment.stepper.state_created") },
+    { id: "2", description: t("shipment.stepper.state_received") },
+    { id: "3", description: t("shipment.stepper.state_in_transit") },
+    { id: "4", description: t("shipment.stepper.state_delivered") },
   ];
   const { activeStep, setActiveStep } = useSteps({
     index: 1,
@@ -102,15 +102,15 @@ const ShipmentStepper = () => {
                 display="flex"
               >
                 {dir === "ltr"
-                  ? steps.map((step, index) => (
-                      <Step key={index}>
+                  ? steps.map((step) => (
+                      <Step key={step.id}>
                         <StepIndicator bg="white">
                           <StepStatus complete={<StepIcon />} />
                         </StepIndicator>
                       </Step>
                     ))
-                  : steps.reverse().map((step, index) => (
-                      <Step key={index}>
+                  : steps.reverse().map((step) => (
+                      <Step key={step.id}>
                         <StepIndicator bg="white">
                           <StepStatus complete={<StepIcon />} />
                         </StepIndicator>

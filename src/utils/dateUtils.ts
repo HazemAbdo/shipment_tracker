@@ -1,5 +1,3 @@
-import { DropOffAddress } from "../types/shipment";
-
 export const formatLastUpdateDate = (
   dateString: string,
   locale: string
