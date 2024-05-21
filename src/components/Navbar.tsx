@@ -31,7 +31,16 @@ export const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 const Navbar = () => {
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  const {
+    onOpen: onOpenNav,
+    onClose: onCloseNav,
+    isOpen: isOpenNav,
+  } = useDisclosure();
+  const {
+    onOpen: onOpenPop,
+    onClose: onClosePop,
+    isOpen: isOpenPop,
+  } = useDisclosure();
   const { locale, dir, toggleLocale } = useLocale();
   const { t } = useTranslation();
   const Links = [
@@ -53,10 +62,10 @@ const Navbar = () => {
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          icon={isOpenNav ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={"Open Menu"}
           display={{ md: "none" }}
-          onClick={isOpen ? onClose : onOpen}
+          onClick={isOpenNav ? onCloseNav : onOpenNav}
         />
         <Box>
           <Image src={locale == "ar" ? LogoArabic : LogoEnglish} width="100%" />
@@ -70,9 +79,9 @@ const Navbar = () => {
           {Links.map((link, index) =>
             index == 3 ? (
               <ShipmentSearch
-                onOpen={onOpen}
-                onClose={onClose}
-                isOpen={isOpen}
+                onOpen={onOpenPop}
+                onClose={onClosePop}
+                isOpen={isOpenPop}
                 dir={dir}
                 link={link}
                 key={link}
@@ -92,12 +101,23 @@ const Navbar = () => {
         </HStack>
       </Flex>
 
-      {isOpen ? (
+      {isOpenNav ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4} margin="auto">
-            {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
-            ))}
+            {Links.map((link, index) =>
+              index === 3 ? (
+                <ShipmentSearch
+                  onOpen={onOpenPop}
+                  onClose={onClosePop}
+                  isOpen={isOpenPop}
+                  dir={dir}
+                  link={link}
+                  key={link}
+                />
+              ) : (
+                <NavLink key={link}>{link}</NavLink>
+              )
+            )}
             <Button
               color="brand"
               alignSelf="start"

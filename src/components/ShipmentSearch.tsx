@@ -60,6 +60,8 @@ const ShipmentSearch = ({
             color: "brand",
           }}
           fontWeight="bold"
+          width={{ base: "fit-content", md: "auto" }}
+          padding="0"
         >
           <NavLink key={link}>{link}</NavLink>
         </Button>
